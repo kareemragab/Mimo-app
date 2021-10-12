@@ -16,26 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const TabNavigator = () => {
   const Favourites = useSelector((state) => state.FavouritesReducer.Favourites);
-  // const [notif, setNotif] = useState(0);
-  // const [chatcount, setchatcount] = useState(0);
-
-  // useEffect(() => {
-  //   if (User) {
-  //     setInterval(() => {
-  //       getUserNotificationsCount(User._id, response => {
-  //         if (response.data) {
-  //           setNotif(response.data.message);
-  //         }
-  //       });
-  //       getUserNotificationsCount(User._id, response => {
-  //         if (response.data) {
-  //             setchatcount(response.data.message2);
-  //         }
-  //       });
-
-  //     }, 3000);
-  //   }
-  // }, []);
 
   return (
     <Tab.Navigator
@@ -43,8 +23,8 @@ const TabNavigator = () => {
       tabBarOptions={{
         tabStyle: styles.tabStyle,
         style: styles.tabBarStyle,
-        // activeTintColor: "#845FA1",
-        // inactiveTintColor: "#9B9B9B",
+        activeTintColor: "#845FA1",
+        inactiveTintColor: "#9B9B9B",
       }}
     >
       <Tab.Screen
@@ -59,10 +39,7 @@ const TabNavigator = () => {
                 allowFontScaling={false}
                 numberOfLines={1}
                 adjustsFontSizeToFit={true}
-                style={[
-                  styles.tabItemTitle,
-                  { color: focused ? "#845FA1" : "#9B9B9B" },
-                ]}
+                style={[styles.tabItemTitle, { color }]}
               >
                 Profile
               </Text>
@@ -74,7 +51,7 @@ const TabNavigator = () => {
                 name="person-outline"
                 style={{ marginTop: 4 }}
                 size={Platform.OS == "android" ? 26 : 27}
-                color={focused ? "#845FA1" : "#9B9B9B"}
+                color={color}
               />
             );
           },
@@ -93,10 +70,7 @@ const TabNavigator = () => {
                 allowFontScaling={false}
                 numberOfLines={1}
                 adjustsFontSizeToFit={true}
-                style={[
-                  styles.tabItemTitle,
-                  { color: focused ? "#845FA1" : "#9B9B9B" },
-                ]}
+                style={[styles.tabItemTitle, { color }]}
               >
                 Favourite
               </Text>
@@ -109,24 +83,17 @@ const TabNavigator = () => {
                 <MaterialIcons
                   name="favorite-outline"
                   size={Platform.OS == "android" ? 26 : 26}
-                  color={focused ? "#845FA1" : "#9B9B9B"}
+                  color={color}
                   style={{ marginTop: Platform.OS == "android" ? 3 : 5 }}
                 />
-                {Favourites.length > 0 && (
-                  <View style={styles.badge}>
-                    <Text
-                      allowFontScaling={false}
-                      numberOfLines={1}
-                      adjustsFontSizeToFit={true}
-                      style={[styles.notifNu]}
-                    >
-                      {Favourites.length}
-                    </Text>
-                  </View>
-                )}
               </View>
             );
           },
+
+          tabBarBadge: Favourites.length,
+          tabBarBadgeStyle: Favourites.length
+            ? styles.badge
+            : { color: "#0000", backgroundColor: "#0000" },
         }}
       />
 
@@ -143,10 +110,7 @@ const TabNavigator = () => {
                 allowFontScaling={false}
                 numberOfLines={1}
                 adjustsFontSizeToFit={true}
-                style={[
-                  styles.tabItemTitle,
-                  { color: focused ? "#845FA1" : "#9B9B9B" },
-                ]}
+                style={[styles.tabItemTitle, { color }]}
               >
                 Catalogue
               </Text>
@@ -158,7 +122,7 @@ const TabNavigator = () => {
                 <Entypo
                   name="grid"
                   size={Platform.OS == "android" ? 28 : 28}
-                  color={focused ? "#845FA1" : "#9B9B9B"}
+                  color={color}
                   style={{ marginTop: 3 }}
                 />
               </View>
@@ -179,10 +143,7 @@ const TabNavigator = () => {
                 allowFontScaling={false}
                 numberOfLines={1}
                 adjustsFontSizeToFit={true}
-                style={[
-                  styles.tabItemTitle,
-                  { color: focused ? "#845FA1" : "#9B9B9B" },
-                ]}
+                style={[styles.tabItemTitle, { color }]}
               >
                 Home
               </Text>
@@ -194,7 +155,7 @@ const TabNavigator = () => {
                 name="home"
                 style={{ marginTop: 4 }}
                 size={Platform.OS == "android" ? 26 : 28}
-                color={focused ? "#845FA1" : "#9B9B9B"}
+                color={color}
               />
             );
           },
@@ -238,10 +199,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#D6A230",
     position: "absolute",
-    top: -17,
-    left: -14,
+    top: -12,
     justifyContent: "center",
     alignItems: "center",
+    color: "#FFF",
+    fontWeight: "bold",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
-  notifNu: { color: "#FFF", fontWeight: "bold" },
+  notifNu: {},
 });
