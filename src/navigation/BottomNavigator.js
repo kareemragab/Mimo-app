@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Image, Text, StyleSheet, Platform, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Tab = createBottomTabNavigator();
@@ -10,8 +10,6 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
-
-// import { getUserNotificationsCount } from './../services/APIs';
 import { useDispatch, useSelector } from "react-redux";
 
 const TabNavigator = () => {
@@ -28,8 +26,8 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="ProfileStack"
-        component={ProfileStack}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           unmountOnBlur: true,
           title: () => {},
@@ -41,16 +39,16 @@ const TabNavigator = () => {
                 adjustsFontSizeToFit={true}
                 style={[styles.tabItemTitle, { color }]}
               >
-                Profile
+                Home
               </Text>
             );
           },
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <Ionicons
-                name="person-outline"
+              <AntDesign
+                name="home"
                 style={{ marginTop: 4 }}
-                size={Platform.OS == "android" ? 26 : 27}
+                size={Platform.OS == "android" ? 26 : 28}
                 color={color}
               />
             );
@@ -58,6 +56,39 @@ const TabNavigator = () => {
         }}
       />
 
+      <Tab.Screen
+        name="CatalogueStack"
+        component={CatalogueStack}
+        options={{
+          unmountOnBlur: true,
+
+          title: () => {},
+          tabBarLabel: ({ focused, color, size }) => {
+            return (
+              <Text
+                allowFontScaling={false}
+                numberOfLines={1}
+                adjustsFontSizeToFit={true}
+                style={[styles.tabItemTitle, { color }]}
+              >
+                Catalogue
+              </Text>
+            );
+          },
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <View>
+                <Entypo
+                  name="grid"
+                  size={Platform.OS == "android" ? 28 : 28}
+                  color={color}
+                  style={{ marginTop: 3 }}
+                />
+              </View>
+            );
+          },
+        }}
+      />
       <Tab.Screen
         name="FavouriteStack"
         component={FavouriteStack}
@@ -98,42 +129,8 @@ const TabNavigator = () => {
       />
 
       <Tab.Screen
-        name="CatalogueStack"
-        component={CatalogueStack}
-        options={{
-          unmountOnBlur: true,
-
-          title: () => {},
-          tabBarLabel: ({ focused, color, size }) => {
-            return (
-              <Text
-                allowFontScaling={false}
-                numberOfLines={1}
-                adjustsFontSizeToFit={true}
-                style={[styles.tabItemTitle, { color }]}
-              >
-                Catalogue
-              </Text>
-            );
-          },
-          tabBarIcon: ({ focused, color, size }) => {
-            return (
-              <View>
-                <Entypo
-                  name="grid"
-                  size={Platform.OS == "android" ? 28 : 28}
-                  color={color}
-                  style={{ marginTop: 3 }}
-                />
-              </View>
-            );
-          },
-        }}
-      />
-
-      <Tab.Screen
-        name="HomeStack"
-        component={HomeStack}
+        name="ProfileStack"
+        component={ProfileStack}
         options={{
           unmountOnBlur: true,
           title: () => {},
@@ -145,16 +142,16 @@ const TabNavigator = () => {
                 adjustsFontSizeToFit={true}
                 style={[styles.tabItemTitle, { color }]}
               >
-                Home
+                Profile
               </Text>
             );
           },
           tabBarIcon: ({ focused, color, size }) => {
             return (
-              <AntDesign
-                name="home"
+              <Ionicons
+                name="person-outline"
                 style={{ marginTop: 4 }}
-                size={Platform.OS == "android" ? 26 : 28}
+                size={Platform.OS == "android" ? 26 : 27}
                 color={color}
               />
             );
@@ -184,7 +181,6 @@ const styles = StyleSheet.create({
   },
   tabItemTitle: {
     width: "100%",
-    // fontFamily: "Cairo-Regular",
     textAlign: "center",
     fontSize: Platform.OS == "android" ? 12 : 14,
     color: "#FFFFFF",
@@ -192,7 +188,6 @@ const styles = StyleSheet.create({
     fontWeight: Platform.OS == "android" ? "700" : "normal",
     marginTop: 1,
   },
-
   badge: {
     width: 30,
     height: 30,
@@ -207,5 +202,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
-  notifNu: {},
 });

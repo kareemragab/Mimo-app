@@ -59,11 +59,9 @@ const Catalogue = ({ navigation }) => {
   };
 
   const categoryPressed = (cat) => {
-    console.log("cat", cat);
     setCategory(cat);
     if (cat == "All") {
       setProducts(OriginalProducts);
-      console.log("OriginalProducts", OriginalProducts.length);
     } else {
       let productsArr = [...OriginalProducts];
       let arr = productsArr.filter((item) => {
@@ -71,7 +69,6 @@ const Catalogue = ({ navigation }) => {
         return item.category == cat;
       });
       setProducts(arr);
-      console.log("OriginalProducts22", productsArr.length);
     }
   };
 

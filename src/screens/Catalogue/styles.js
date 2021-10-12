@@ -51,20 +51,20 @@ const styles = StyleSheet.create({
   },
   itemTxt: {
     width: "100%",
-    textAlign: "right",
+    textAlign: "left",
     fontSize: 14,
     color: "#40304D",
     marginTop: 10,
   },
   itemTxtDesc: {
     width: "100%",
-    textAlign: "right",
+    textAlign: "left",
     fontSize: 14,
     color: "#40304D",
   },
   itemTxtPrice: {
     width: "100%",
-    textAlign: "right",
+    textAlign: "left",
     fontSize: 20,
     color: "#40304D",
     marginTop: 5,
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   FavBtn: {
     padding: 10,
     backgroundColor: "#fff",
-    alignSelf: "flex-start",
+    alignSelf: "flex-end",
     borderRadius: 30,
-    marginLeft: 14,
+    marginRight: 14,
     bottom: 20,
     shadowColor: "#000",
     shadowOffset: {
